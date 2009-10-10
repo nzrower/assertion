@@ -12,5 +12,9 @@ Requirements
 	davidg@calculate:~/coherent$ svn --version --quiet
 	1.5.4
 
+Checkout source
+* svn checkout http://assertion.googlecode.com/svn/trunk/ assertion-read-only
+
 Next Steps
-* run ant -projectHelp from this directory
+* cd assertion-read-only
+* ant -projecthelp
