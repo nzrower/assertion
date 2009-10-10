@@ -18,3 +18,8 @@ Checkout source
 Next Steps
 * cd assertion-read-only
 * ant -projecthelp
+
+Project Folders
+* source	checked in source code bundles
+* cache 	cache of subversion checkouts of dependent projects
+* build     compiled files
