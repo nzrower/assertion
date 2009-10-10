@@ -1,0 +1,16 @@
+Requirements
+* Java 1.6
+	davidg@calculate:~$ java -version
+	java version "1.6.0_14"
+	Java(TM) SE Runtime Environment (build 1.6.0_14-b08)
+	Java HotSpot(TM) 64-Bit Server VM (build 14.0-b16, mixed mode)
+* Ant 1.7
+	davidg@calculate:~/coherent$ ant -version
+	Apache Ant version 1.7.1 compiled on June 27 2008
+
+* svn 1.5.4
+	davidg@calculate:~/coherent$ svn --version --quiet
+	1.5.4
+
+Next Steps
+* run ant -projectHelp from this directory

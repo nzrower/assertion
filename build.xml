@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<project name="assertion" default="build">
+	
+	<available file="cache" property="cache.exists"/>
+	
+	<target name="clean">
+		<echo message="Cleaning files created by any previous build"/>		
+		<delete includeemptydirs="true">
+		    <fileset dir="source/com.google.common">
+		    	<include name="lib/**/*"/>
+		    	<include name="src/main/java/**/*"/>		    	
+			</fileset>
+			<fileset dir="source/com.google.common/build"/>
+		</delete>		
+	</target>
+	<target name="reset" depends="clean">
+		<echo message="Resetting state by deleting cache"/>
+		<delete dir="cache"/>
+	</target>
+	<target name="setup-first-time" unless="cache.exists">
+		<echo message="Performing first time setup"/>
+		<mkdir dir="cache"/>
+		<echo message="Creating cached svn checkout of google-collections"/>
+		<exec dir="cache" executable="svn"><arg line="checkout http://google-collections.googlecode.com/svn/trunk/ google-collections-read-only"/></exec>
+		<echo message="Creating cached svn checkout of guava-libraries"/>
+		<exec dir="cache" executable="svn"><arg line="checkout http://guava-libraries.googlecode.com/svn/trunk/ guava-libraries-read-only"/></exec>
+	</target>
+	<target name="setup" depends="setup-first-time">		
+		<echo message="Updating cached svn checkout of google-collections"/>
+		<exec dir="cache" executable="svn"><arg line="update google-collections-read-only"/></exec>
+		<echo message="Updating cached svn checkout of guava-libraries"/>
+		<exec dir="cache" executable="svn"><arg line="update guava-libraries-read-only"/></exec>
+
+		<echo message="Creating osgi bundle for com.google.common from google-collections and guava-libraries"/>
+		<!-- copy source -->
+		<copy todir="source/com.google.common/src/main/java">
+			<fileset dir="cache/google-collections-read-only/src"/>
+			<fileset dir="cache/guava-libraries-read-only/src"/>
+		</copy>
+		<!-- copy dependent lib -->
+		<copy file="cache/guava-libraries-read-only/lib/jsr305.jar" todir="source/com.google.common/lib"/>
+	</target>
+	<target name="build" depends="clean,setup">
+		
+	</target>
+</project>
