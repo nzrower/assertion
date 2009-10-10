@@ -18,6 +18,8 @@ Checkout source
 Next Steps
 * cd assertion-read-only
 * ant -projecthelp
+* ant clean setup build
+* import projects under source into eclipse
 
 Project Folders
 * source	checked in source code bundles
