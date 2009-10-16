@@ -7,13 +7,13 @@ Bundle-Vendor: http://code.google.com/p/guava-libraries/
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ClassPath: lib/jsr305.jar,
  .
-Export-Package: com.google.common.annotations,
- com.google.common.base,
- com.google.common.base.internal,
- com.google.common.collect,
- com.google.common.io,
- com.google.common.primitives,
- com.google.common.util.concurrent,
+Export-Package: com.google.common.annotations;version="1.0.0",
+ com.google.common.base;version="1.0.0",
+ com.google.common.base.internal;version="1.0.0",
+ com.google.common.collect;version="1.0.0",
+ com.google.common.io;version="1.0.0",
+ com.google.common.primitives;version="1.0.0",
+ com.google.common.util.concurrent;version="1.0.0",
  javax.annotation,
  javax.annotation.concurrent,
  javax.annotation.meta
