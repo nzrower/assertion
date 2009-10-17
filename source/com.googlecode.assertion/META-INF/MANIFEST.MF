@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: com.googlecode.assertion
+Bundle-SymbolicName: com.googlecode.assertion;singleton:=true
+Bundle-Version: 0.1.0
+Bundle-Vendor: http://assertion.googlecode.com/
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: com.googlecode.assertion;version="0.1.0",
+ com.googlecode.assertion.utility;version="0.1.0"

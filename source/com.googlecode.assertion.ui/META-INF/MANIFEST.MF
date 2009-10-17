@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: com.googlecode.assertion.ui
+Bundle-SymbolicName: com.googlecode.assertion.ui
+Bundle-Version: 1.0.0
+Bundle-Vendor: http://code.google.com/p/assertion/
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: lib/linux-x86_64/swt.jar,
+ .
+Import-Package: com.googlecode.assertion;version="0.1.0",
+ com.googlecode.assertion.utility;version="0.1.0"
