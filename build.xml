@@ -1,7 +1,11 @@
 <?xml version="1.0"?>
 <project name="assertion" default="build">
 	
+	<!-- Properties that condition blocks make decisions on -->
 	<available file="cache" property="cache.exists"/>
+	<echo message="cache.exists = ${cache.exists}"/>
+	<property name="platform" value="${os.name}_${os.arch}"></property>
+	<echo message="platform = ${platform}"/>		
 	
 	<target name="clean" description="deletes all compiled and derived files">
 		<echo message="Cleaning files created by any previous build"/>		
@@ -9,10 +13,16 @@
 		    <fileset dir="source/com.google.common">
 		    	<include name="lib/**/*"/>
 		    	<include name="src/main/java/**/*"/>		    	
-			</fileset>
-			<fileset dir="source/com.google.common/build"/>
-			<fileset dir="build"/>
-		</delete>		
+		    </fileset>
+		    <fileset dir="source/com.googlecode.assertion.ui/lib">
+			<include name="swt*"/>
+		    </fileset>
+		</delete>
+                <delete includeemptydirs="true" dir="source/com.google.common/build"/>
+                <delete includeemptydirs="true" dir="source/com.googlecode.assertion/build"/>
+                <delete includeemptydirs="true" dir="source/com.googlecode.assertion.ui/build"/>
+                <delete includeemptydirs="true" dir="build"/>
+                <delete includeemptydirs="true" dir="source/AssertionTest/build"/>
 	</target>
 	<target name="reset" depends="clean" description="deletes cache of subversion checkouts and all compiled and derived files">
 		<echo message="Resetting state by deleting cache"/>
@@ -23,12 +33,17 @@
 		<mkdir dir="cache"/>
 		<echo message="Creating cached svn checkout of google-collections and guava"/>
 		<exec dir="cache" executable="svn"><arg line="checkout http://google-collections.googlecode.com/svn/trunk/ google-collections-read-only"/></exec>
+		
 		<echo message="Creating cached svn checkout of guava-libraries"/>
-		<exec dir="cache" executable="svn"><arg line="checkout http://guava-libraries.googlecode.com/svn/trunk/ guava-libraries-read-only"/></exec>
+		<exec dir="cache" executable="svn"><arg line="checkout http://guava-libraries.googlecode.com/svn/trunk/ guava-libraries-read-only"/></exec>		
 	</target>
 	<target name="setup" depends="setup-first-time" description="subversion update of dependent projects, derive com.google.common osgi bundle">		
-		<echo message="Updating cached svn checkout of google-collections"/>
+                <echo message="Creating build directory"/>
+	        <mkdir dir="build"/>
+	
+                <echo message="Updating cached svn checkout of google-collections"/>
 		<exec dir="cache" executable="svn"><arg line="update google-collections-read-only"/></exec>
+		
 		<echo message="Updating cached svn checkout of guava-libraries"/>
 		<exec dir="cache" executable="svn"><arg line="update guava-libraries-read-only"/></exec>
 
@@ -40,8 +55,18 @@
 		</copy>
 		<!-- copy dependent lib -->
 		<copy file="cache/guava-libraries-read-only/lib/jsr305.jar" todir="source/com.google.common/lib"/>
+		<!-- copy license -->
+		<copy file="cache/guava-libraries-read-only/COPYING" todir="source/com.google.common"/>
+		
+		<echo message="Configuring com.googlecode.assertion.ui for platform '${platform}'"/>
+		<!-- copy appropriate platform specific swt jars -->
+		<copy todir="source/com.googlecode.assertion.ui/lib">
+			<fileset dir="source/com.googlecode.assertion.ui/lib/${platform}"/>					
+		</copy>		
 	</target>
 	<target name="build" depends="clean,setup" description="compilation of java files">
-		
+		<echo message="Note: full command line build not yet implemented, but development in eclipse is now ready"/>
+	</target>
+	<target name="sandpit">		
 	</target>
 </project>

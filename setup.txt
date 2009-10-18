@@ -7,7 +7,6 @@ Requirements
 * Ant 1.7
 	davidg@calculate:~/coherent$ ant -version
 	Apache Ant version 1.7.1 compiled on June 27 2008
-
 * svn 1.5.4
 	davidg@calculate:~/coherent$ svn --version --quiet
 	1.5.4
@@ -17,11 +16,20 @@ Checkout source
 
 Next Steps
 * cd assertion-read-only
-* ant -projecthelp
+* (first time) ant -projecthelp
 * ant clean setup build
-* import projects under source into eclipse
+* (first time) import projects under source into eclipse
+* refresh projects in eclipse
+* build all projects in eclipse
+* (first time) read source/Assertion/Development Guide.odt
+* (first time) read wiki http://code.google.com/p/assertion/
 
 Project Folders
-* source	checked in source code bundles
-* cache 	cache of subversion checkouts of dependent projects
+* source                       Checked in source code bundles                                				
+  + Assertion                     Project  		 Documentation
+  + AssertionTest                 Java Project   A regular Java Project containing (1) all unit tests for Java code in bundles below (2) Test and Sample Applications.
+  + com.google.common             OSGi Bundle    Packaging of Google Guava and Google Collections
+  + com.googlecode.assertion      OSGi Bundle    Library for message archive, the com.googlecode.assertion package contains all classes exposed as part of the api
+  + com.googlecode.assertion.ui   OSGI Bundle    User Interface for Viewer
+* cache     cache of subversion checkouts of dependent projects
 * build     compiled files
