@@ -6,6 +6,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.googlecode.assertion"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/com.google.common"/>
-	<classpathentry kind="lib" path="lib/postgresql-8.4-701.jdbc4.jar"/>
 	<classpathentry kind="output" path="build/main/classes"/>
 </classpath>
